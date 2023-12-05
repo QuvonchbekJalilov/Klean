@@ -63,8 +63,11 @@
 
                        @auth
 
-
+                        @if (auth()->user()->hasRole('admin'))
+                            
+                        
                        <a href="{{ route('posts.create')}}" class="btn btn-primary mr-3 d-none d-lg-block">Post Yaratish</a>
+                       @endif
                        <form action="{{ route('logout')}}" method="post">
                            @csrf
                            <button class="btn btn-info mr-3 d-none d-lg-block">Chiqish</button>

@@ -20,6 +20,7 @@ $categories = Category::all() ?>
                 <div class="col-lg-8">
                     @auth
                     @canany(['update','delete'], $post)
+                    @if (auth()->user()->hasRole('admin'))
                     <div class="row mb-4">
                         <a href="{{ route('posts.edit',['post' => $post->id]) }}" class="btn btn-sm btn-outline-info">Postni o'zgartirish</a>
                         <form action=" {{ route('posts.destroy',['post' => $post->id ]) }}" method="post" onsubmit="return confirm('Are you sure you wish to delete?');">
@@ -28,6 +29,7 @@ $categories = Category::all() ?>
                             <button type="submit" class="btn btn-sm btn-outline-danger">O'chirish</button>
                         </form>
                     </div>
+                    @endif
                     @endcanany
                     @endauth
                     <div class="mb-5">

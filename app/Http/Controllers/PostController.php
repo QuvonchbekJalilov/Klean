@@ -7,6 +7,7 @@ use App\Http\Requests\StorePostRequest;
 use App\Jobs\UploadBigFile;
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\Role;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -29,6 +30,7 @@ class PostController extends Controller
 
     public function create()
     {
+        Gate::authorize('create-post', Role::where('name','admin')->first()); 
         return view('posts.create')->with([
             'tags' => Tag::all(),
         ]);

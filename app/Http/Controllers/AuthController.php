@@ -45,6 +45,8 @@ class AuthController extends Controller
         ]);
         $valid['password'] = Hash::make($valid['password']);
         $user = User::create($valid);
+        $user->roles()->attach(3);
+
         auth()->login($user);
         return redirect('/')->with('success', 'Akkaunt muvaffaqiyatli regestratsiya qilindi');
 
